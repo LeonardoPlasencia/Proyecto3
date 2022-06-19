@@ -59,21 +59,14 @@ opcion_provincia = st.selectbox('Selecciona una provincia', set_provincias)
 df_provincias = df_departamentos[df_departamentos['PROVINCIA'] == opcion_provincia]
 num_filas = len(df_provincias.axes[0]) 
 
-#Construccion del set/list de distritos (Valores unicos sin NA)
-set_distritos = np.sort(df_departamentos['DISTRITO'].dropna().unique())
-#Seleccion del distrito
-opcion_distrito = st.selectbox("Selecciona un distrito", set_distritos)
-df_distritos = df_departamentos[df_departamentos["DISTRITO"] == opcion_distrito]
-num_filas = len(df_distritos.axes[0])
-
 st.write('Numero de registros:', num_filas)
 
 #Código de gráficos
 
 #Generacion de los dataframe de frecuencias
-df_sexo = df_distritos.SEXO.value_counts()
-df_edad = df_distritos.EDAD.value_counts()
-df_metodox = df_distritos.METODODX.value_counts()
+df_sexo = df_provincias.SEXO.value_counts()
+df_edad = df_provincias.EDAD.value_counts()
+df_metodox = df_provincias.METODODX.value_counts()
 
 #Ploteo de las frecuencias
 st.bar_chart(df_sexo)
