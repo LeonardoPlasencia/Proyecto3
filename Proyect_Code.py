@@ -60,7 +60,7 @@ df_provincias = df_departamentos[df_departamentos['PROVINCIA'] == opcion_provinc
 num_filas = len(df_provincias.axes[0]) 
 
 #Construccion del set/list de distritos (Valores unicos sin NA)
-set_distritos = np.sort(df_provincias["DISTRITO"].dropna().unique())
+set_distritos = np.sort(df_provincias['DISTRITO'].dropna().unique())
 #Seleccion del distrito
 opcion_distrito = st.selectbox("Selecciona un distrito", set_distritos)
 df_distritos = df_provincias[df_provincias["DISTRITO"] == opcion_distrito]
