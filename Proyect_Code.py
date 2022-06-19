@@ -21,10 +21,10 @@ import streamlit as st
 import gdown
 import os
 
-#TITULO DE PROYECTO
+#Título
 st.title('Casos positivos por COVID-19 en el Perú')
 
-#CARGA DE DATOS
+#Carga del Dataset
 
 # Lectura de datos desde CSV
 #id = 1op-iq0XhBXBQOPlagCPE9TzFsFkkNVjQ
@@ -45,30 +45,37 @@ df = df.drop(columns = ["DISTRITO","FECHA_CORTE","FECHA_RESULTADO","UBIGEO","id_
 
 #Código de filtros
 
-# Construccion del set/list de departamentos (Valores unicos sin NA)
+#Construccion del set/list de departamentos (Valores unicos sin NA)
 set_departamentos = np.sort(df['DEPARTAMENTO'].dropna().unique())
-# Seleccion del departamento
+#Seleccion del departamento
 opcion_departamento = st.selectbox('Selecciona un departamento', set_departamentos)
 df_departamentos = df[df['DEPARTAMENTO'] == opcion_departamento]
 num_filas = len(df_departamentos.axes[0]) 
 
-# Construccion del set/list de provincias (Valores unicos sin NA)
+#Construccion del set/list de provincias (Valores unicos sin NA)
 set_provincias = np.sort(df_departamentos['PROVINCIA'].dropna().unique())
-# Seleccion de la provincia
+#Seleccion de la provincia
 opcion_provincia = st.selectbox('Selecciona una provincia', set_provincias)
 df_provincias = df_departamentos[df_departamentos['PROVINCIA'] == opcion_provincia]
 num_filas = len(df_provincias.axes[0]) 
+
+#Construccion del set/list de distritos (Valores unicos sin NA)
+set_distritos = np.sort(df_provincias["DISTRITO"].dropna().unique())
+#Seleccion del distrito
+opcion_distrito = st.selectbox("Selecciona un distrito", set_distritos)
+df_distritos = df_provincias[df_provincias["DISTRITO"] == opcion_distrito]
+num_filas = len(df_distritos.axes[0])
 
 st.write('Numero de registros:', num_filas)
 
 #Código de gráficos
 
-# Generacion de los dataframe de frecuencias
-df_sexo = df_provincias.SEXO.value_counts()
-df_edad = df_provincias.EDAD.value_counts()
-df_metodox = df_provincias.METODODX.value_counts()
+#Generacion de los dataframe de frecuencias
+df_sexo = df_distritos.SEXO.value_counts()
+df_edad = df_distritos.EDAD.value_counts()
+df_metodox = df_distritos.METODODX.value_counts()
 
-# Ploteo de las frecuencias
+#Ploteo de las frecuencias
 st.bar_chart(df_sexo)
 st.bar_chart(df_edad)
 st.bar_chart(df_metodox)
