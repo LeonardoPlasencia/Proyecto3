@@ -23,6 +23,7 @@ import os
 
 #Título
 st.title('Casos positivos por COVID-19 en el Perú')
+st.text("La información contenida en esta página web permite acceder al Dataset “Casos positivos por COVID-19” elaborado por el Ministerio de Salud (MINSA) del Perú. Este ha registrado el monitoreo diario de los casos positivos de covid-19 confirmados con cualquier tipo de prueba hasta el día 23 de mayo de 2022. Cada registro es equivalente a una persona, así como su sexo, edad y distintos niveles de ubicación geográfica: departamento, provincia y distrito. El Dataset original se encuentra en subido en la página oficial del gobierno del Perú (https://www.datosabiertos.gob.pe/dataset/casos-positivos-por-covid-19-ministerio-de-salud-minsa.)")
 
 #Carga del Dataset
 
